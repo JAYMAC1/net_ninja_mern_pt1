@@ -1,9 +1,7 @@
-import { WorkoutsContext } from '../context/workoutsContext'
+import { WorkoutsContext } from '../context/WorkoutsContext'
 import { useContext } from 'react'
 
-import React from 'react'
-
-const useWorkoutsContext = () => {
+export const useWorkoutsContext = () => {
   const context = useContext(WorkoutsContext)
 
   if (!context) {
@@ -14,5 +12,3 @@ const useWorkoutsContext = () => {
 
   return context
 }
-
-export default useWorkoutsContext

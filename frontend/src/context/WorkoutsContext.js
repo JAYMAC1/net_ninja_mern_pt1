@@ -8,16 +8,14 @@ export const workoutsReducer = (state, action) => {
       return {
         workouts: action.payload,
       }
-      break
+
     case 'CREATE_WORKOUT':
       return {
         workouts: [action.payload, ...state.workouts],
       }
-      break
 
     default:
       return state
-      break
   }
 }
 
@@ -27,7 +25,7 @@ export const WorkoutsContextProvider = ({ children }) => {
   })
 
   return (
-    <WorkoutsContext.Provider value={{ state, dispatch }}>
+    <WorkoutsContext.Provider value={{ ...state, dispatch }}>
       {children}
     </WorkoutsContext.Provider>
   )
