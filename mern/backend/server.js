@@ -1,6 +1,7 @@
 // package imports
 const express = require('express')
 const dotenv = require('dotenv').config()
+const userRoutes = require('./routes/userRoutes')
 
 const PORT = process.env.PORT || 4000
 
@@ -14,9 +15,7 @@ app.use((req, res, next) => {
 })
 
 // route handler
-app.get('/', (req, res) => {
-  res.status(200).json({ msg: 'connected to app' })
-})
+app.get('/app', userRoutes)
 
 // server listening
 app.listen(PORT, () => {
