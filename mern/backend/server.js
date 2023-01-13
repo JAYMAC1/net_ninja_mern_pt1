@@ -2,7 +2,7 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 4000
 
 // express app
 const app = express()
@@ -10,7 +10,6 @@ const app = express()
 // middleware
 app.use((req, res, next) => {
   console.log(req.path, req.method)
-
   next()
 })
 
