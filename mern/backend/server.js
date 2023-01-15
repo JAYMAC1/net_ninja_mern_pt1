@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 4000
 // express app
 const app = express()
 
+// app.use(express.json())
+
 // middleware
 app.use((req, res, next) => {
   console.log(req.path, req.method)
@@ -15,7 +17,7 @@ app.use((req, res, next) => {
 })
 
 // route handler
-app.get('/api/users', userRoutes)
+app.use('/api/users', userRoutes)
 
 // server listening
 app.listen(PORT, () => {
