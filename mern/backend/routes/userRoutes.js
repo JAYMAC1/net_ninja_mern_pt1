@@ -1,9 +1,8 @@
 const express = require('express')
+const { login } = require('../controllers/userController')
 
 const router = express.Router()
 
-router.get('/', (req, res) =>{
-    console.log('route from roues file');
-})
+router.get('/login', login)
 
 module.exports = router

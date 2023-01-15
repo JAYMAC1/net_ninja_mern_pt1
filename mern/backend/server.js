@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 })
 
 // route handler
-app.get('/app', userRoutes)
+app.get('/api/users', userRoutes)
 
 // server listening
 app.listen(PORT, () => {
