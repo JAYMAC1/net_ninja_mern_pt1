@@ -2,6 +2,7 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
 const userRoutes = require('./routes/userRoutes')
+const workoutRoutes = require('./routes/workoutRoutes')
 
 const PORT = process.env.PORT || 4000
 
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 
 // route handler
 app.use('/api/users', userRoutes)
+app.use('/api/workouts', workoutRoutes)
 
 // server listening
 app.listen(PORT, () => {
