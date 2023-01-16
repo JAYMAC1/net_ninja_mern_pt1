@@ -1,16 +1,33 @@
+// import workout model
+const Workout = require('../Models/workoutModel')
+
 // get all the workouts
-const getWorkouts = (req, res) => {
-  res.status(200).json({ msg: 'GET workouts (controller)' })
+const getWorkouts = async (req, res) => {
+  const workouts = await Workout.find({}).sort({ createdAt: -1 })
+  if (workouts) {
+    res.status(200).json(workouts)
+  }
 }
 
 // get a single workout
-const getWorkout = (req, res) => {
-  res.status(200).json({ msg: 'GET workout by ID (controller)' })
+const getWorkout = async (req, res) => {
+  const { id } = req.params
+  const workout = await Workout.findById(id)
+  if (!workout) {
+    return res.status(404).json({ msg: ' no document found!' })
+  }
+  res.status(200).json(workout)
 }
 
 // create a new workout
-const createWorkout = (req, res) => {
-  res.status(200).json({ msg: 'POST workout (controller)' })
+const createWorkout = async (req, res) => {
+  const { title, reps, load } = req.body
+  try {
+    const workout = await Workout.create({ title, load, reps })
+    res.status(200).json(workout)
+  } catch (error) {
+    res.status(400).json({ error: error.message })
+  }
 }
 
 // delete a workout
