@@ -1,3 +1,6 @@
+// import packages
+const mongoose = require('mongoose')
+
 // import workout model
 const Workout = require('../Models/workoutModel')
 
@@ -12,6 +15,9 @@ const getWorkouts = async (req, res) => {
 // get a single workout
 const getWorkout = async (req, res) => {
   const { id } = req.params
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: 'No such workout' })
+  }
   const workout = await Workout.findById(id)
   if (!workout) {
     return res.status(404).json({ msg: ' no document found!' })
@@ -31,7 +37,7 @@ const createWorkout = async (req, res) => {
 }
 
 // delete a workout
-const deleteWorkout = (req, res) => {
+const deleteWorkout = async (req, res) => {
   res.status(200).json({ msg: 'DELETE workout (controller)' })
 }
 
