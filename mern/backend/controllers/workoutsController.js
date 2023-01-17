@@ -38,11 +38,21 @@ const createWorkout = async (req, res) => {
 
 // delete a workout
 const deleteWorkout = async (req, res) => {
-  res.status(200).json({ msg: 'DELETE workout (controller)' })
+  const { id } = req.params
+  if (!mongoose.Types.isValid(id)) {
+    return res.status(404).json({ error: 'Workot not found!!' })
+  }
+  const workout = await Workout.findByIdAndDelete({ _id: id })
+  if (!workout) {
+    return res.status(404).json({ error: 'Workot not found!!' })
+  }
+  res.status(200).json(workout)
 }
 
 // update workout
 const updateWorkout = (req, res) => {
+  const { id } = req.params
+
   res.status(200).json({ msg: 'PATCH workout by ID (contoller)' })
 }
 
