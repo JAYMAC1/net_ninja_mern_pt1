@@ -50,10 +50,18 @@ const deleteWorkout = async (req, res) => {
 }
 
 // update workout
-const updateWorkout = (req, res) => {
+const updateWorkout = async (req, res) => {
+  const { title, reps, load } = req.body
   const { id } = req.params
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: 'Workot not found!!' })
+  }
 
-  res.status(200).json({ msg: 'PATCH workout by ID (contoller)' })
+  const workout = await Workout.findOneAndUpdate({ _id: id }, { ...req.body })
+  if (!workout) {
+    return res.status(404).json({ error: 'Workot not found!!' })
+  }
+  res.status(200).json(workout)
 }
 
 module.exports = {
