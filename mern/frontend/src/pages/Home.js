@@ -5,7 +5,6 @@ import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 function Home() {
   const { workouts, dispatch } = useWorkoutsContext()
-
   useEffect(() => {
     const fetchWorkouts = async () => {
       const response = await fetch('/api/workouts')
@@ -13,6 +12,7 @@ function Home() {
 
       if (response.ok) {
         dispatch({ type: 'SET_WORKOUTS', payload: json })
+        console.log('home useEffect', json)
       }
     }
 
