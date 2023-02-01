@@ -10,7 +10,7 @@ export const useSignup = () => {
     setIsLoading(true)
     setError(null)
 
-    const repsonse = await fetch('/api/user/signup', {
+    const repsonse = await fetch('/api/users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export const useSignup = () => {
 
     if (repsonse.ok) {
       // store in localStorage
-      localStorage.setItem('user'.JSON.stringify(json))
+      localStorage.setItem('user', JSON.stringify(json))
 
       dispatch({ type: 'LOGIN', payload: json })
       setIsLoading(false)
