@@ -6,7 +6,7 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const { login } = useLogin()
+  const { login, isLoading, error } = useLogin()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -30,7 +30,8 @@ function Login() {
         value={password}
         required
       />
-      <button>Login</button>
+      <button disabled={isLoading}>Login</button>
+      {error && <div className='error'>{error}</div>}
     </form>
   )
 }
