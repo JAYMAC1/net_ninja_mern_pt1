@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const User = require('../Models/userModel')
+const User = require('../models/userModel')
 
 const requireAuth = async (req, res, next) => {
   // verify authentication
@@ -10,7 +10,6 @@ const requireAuth = async (req, res, next) => {
   }
 
   const token = authorization.split(' ')[1]
-  console.log('token', token)
 
   try {
     const { _id } = jwt.verify(token, process.env.SECRET)

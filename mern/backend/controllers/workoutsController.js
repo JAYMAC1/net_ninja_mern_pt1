@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 // import workout model
-const Workout = require('../Models/workoutModel')
+const Workout = require('../models/workoutModel')
 
 // get all the workouts
 const getWorkouts = async (req, res) => {
