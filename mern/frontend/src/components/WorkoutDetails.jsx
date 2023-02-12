@@ -14,7 +14,6 @@ function WorkoutDetails({ workout }) {
       return
     }
 
-    console.log('DELETE', user.token)
     const response = await fetch('/api/workouts/' + workout._id, {
       method: 'DELETE',
       headers: {
@@ -27,10 +26,7 @@ function WorkoutDetails({ workout }) {
     if (response.ok) {
       dispatch({ type: 'DELETE_WORKOUT', payload: json })
     } else {
-      console.log(response.statusText)
     }
-
-    console.log(workout._id)
   }
   return (
     <div className='workout-details'>
